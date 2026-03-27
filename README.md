@@ -1,5 +1,7 @@
 # PixelDiet
 
+![PixelDiet head](./head.webp)
+
 PixelDiet es una SPA estatica para comprimir y convertir imagenes directamente en el navegador. Todo el procesamiento ocurre del lado del cliente, por lo que los archivos no se suben a servidores externos.
 
 ## Demo
