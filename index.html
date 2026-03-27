@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="PixelDiet comprime y convierte imagenes localmente en tu navegador sin subir archivos a servidores externos."
+    />
+    <link rel="icon" type="image/png" href="./icono.png" />
+    <link rel="apple-touch-icon" href="./icono.png" />
+    <title>PixelDiet | Compresion local de imagenes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero__copy">
+          <div class="hero__brand">
+            <img class="hero__logo" src="./icono.png" alt="Icono de PixelDiet" />
+            <h1>PixelDiet</h1>
+          </div>
+          <p class="hero__lede">
+            Comprime y convierte imagenes localmente desde tu navegador, sin subir
+            archivos y con una vista inmediata del resultado.
+          </p>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="panel panel--dropzone" aria-labelledby="upload-title">
+          <div class="panel__header">
+            <p class="panel__eyebrow">Entrada</p>
+            <h2 id="upload-title">Carga una imagen</h2>
+          </div>
+
+          <label class="dropzone" id="dropzone" for="file-input">
+            <input
+              id="file-input"
+              class="sr-only"
+              type="file"
+              accept="image/png,image/jpeg,image/webp"
+            />
+            <span class="dropzone__icon" aria-hidden="true">+</span>
+            <span class="dropzone__title">Arrastra tu archivo aqui</span>
+            <span class="dropzone__subtitle"
+              >O elige una imagen JPG, PNG o WebP desde tu equipo</span
+            >
+          </label>
+
+          <div class="file-pill" id="file-pill" hidden>
+            <span id="file-name">Sin archivo</span>
+            <button id="clear-file" type="button" class="ghost-button">Limpiar</button>
+          </div>
+        </section>
+
+        <section class="panel panel--controls" aria-labelledby="controls-title">
+          <div class="panel__header">
+            <p class="panel__eyebrow">Control</p>
+            <h2 id="controls-title">Ajusta la exportacion</h2>
+          </div>
+
+          <form class="controls" id="controls-form">
+            <fieldset class="toggle-group">
+              <legend>Tipo de compresion</legend>
+              <label>
+                <input type="radio" name="compression-mode" value="lossy" checked />
+                <span>Lossy</span>
+              </label>
+              <label>
+                <input type="radio" name="compression-mode" value="lossless" />
+                <span>Lossless</span>
+              </label>
+            </fieldset>
+
+            <label class="control-block" for="format-select">
+              <span>Formato de salida</span>
+              <select id="format-select">
+                <option value="image/webp">WebP</option>
+                <option value="image/jpeg">JPEG</option>
+                <option value="image/png">PNG</option>
+              </select>
+            </label>
+
+            <label class="control-block" for="quality-range">
+              <span>
+                Calidad
+                <strong id="quality-value">82%</strong>
+              </span>
+              <input id="quality-range" type="range" min="25" max="100" value="82" />
+            </label>
+
+            <div class="quality-hint" id="quality-hint">
+              Balanceado para WebP con buena reduccion visual.
+            </div>
+
+            <button id="download-button" class="primary-button" type="button" disabled>
+              Descargar optimizada
+            </button>
+          </form>
+        </section>
+
+        <section class="panel panel--metrics" aria-labelledby="metrics-title">
+          <div class="panel__header">
+            <p class="panel__eyebrow">Lectura rapida</p>
+            <h2 id="metrics-title">Impacto estimado</h2>
+          </div>
+
+          <div class="metrics-grid">
+            <article>
+              <span>Original</span>
+              <strong id="original-size">-</strong>
+            </article>
+            <article>
+              <span>Optimizada</span>
+              <strong id="optimized-size">-</strong>
+            </article>
+            <article>
+              <span>Ahorro</span>
+              <strong id="saved-size">-</strong>
+            </article>
+            <article>
+              <span>Reduccion</span>
+              <strong id="saved-percent">-</strong>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel panel--preview" aria-labelledby="preview-title">
+          <div class="panel__header">
+            <p class="panel__eyebrow">Comparacion</p>
+            <h2 id="preview-title">Antes vs despues</h2>
+          </div>
+
+          <div class="compare-stage" id="compare-stage" data-loaded="false">
+            <div class="compare-stage__empty" id="empty-state">
+              <p>La previsualizacion aparecera aqui cuando cargues una imagen.</p>
+            </div>
+
+            <div class="compare-stage__canvas-wrap">
+              <img id="preview-original" alt="Vista original" />
+              <div class="compare-overlay" id="compare-overlay">
+                <img id="preview-optimized" alt="Vista optimizada" />
+              </div>
+              <input
+                id="compare-slider"
+                class="compare-slider"
+                type="range"
+                min="0"
+                max="100"
+                value="55"
+                aria-label="Control del comparador antes y despues"
+              />
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>
+          Autor: Pedro GV
+          <a href="https://github.com/furthurr" target="_blank" rel="noreferrer noopener"
+            >@furthurr</a
+          >
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
