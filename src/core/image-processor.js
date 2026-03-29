@@ -103,16 +103,33 @@ function getPngColorCount(quality, compressionMode) {
   return 32;
 }
 
+function countUniqueColors(imageData) {
+  const pixels = imageData.data;
+  const seen = new Set();
+  for (let i = 0; i < pixels.length; i += 4) {
+    const r = pixels[i];
+    const g = pixels[i + 1];
+    const b = pixels[i + 2];
+    const a = pixels[i + 3];
+    seen.add((r << 24) | (g << 16) | (b << 8) | a);
+    if (seen.size > 256) return 257;
+  }
+  return seen.size;
+}
+
 async function exportPngBlob(canvas, quality, compressionMode) {
   const context = canvas.getContext('2d', { alpha: true, willReadFrequently: true });
   const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-  const colorCount = getPngColorCount(quality, compressionMode);
+  const targetColorCount = getPngColorCount(quality, compressionMode);
 
-  if (colorCount === 0) {
-    return canvasToBlob(canvas, 'image/png');
+  if (targetColorCount === 0) {
+    const uniqueColors = countUniqueColors(imageData);
+    const colorCount = uniqueColors <= 256 ? uniqueColors : 0;
+    const encodedPng = UPNG.encode([imageData.data.buffer], canvas.width, canvas.height, colorCount);
+    return new Blob([encodedPng], { type: 'image/png' });
   }
 
-  const encodedPng = UPNG.encode([imageData.data.buffer], canvas.width, canvas.height, colorCount);
+  const encodedPng = UPNG.encode([imageData.data.buffer], canvas.width, canvas.height, targetColorCount);
   return new Blob([encodedPng], { type: 'image/png' });
 }
 
