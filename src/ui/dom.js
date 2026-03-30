@@ -15,7 +15,10 @@ export function getAppElements() {
     savedSize: document.querySelector('#saved-size'),
     savedPercent: document.querySelector('#saved-percent'),
     compareStage: document.querySelector('#compare-stage'),
+    compareWrap: document.querySelector('#compare-wrap'),
     compareOverlay: document.querySelector('#compare-overlay'),
+    compareDivider: document.querySelector('#compare-divider'),
+    compareHandle: document.querySelector('#compare-handle'),
     compareSlider: document.querySelector('#compare-slider'),
     previewOriginal: document.querySelector('#preview-original'),
     previewOptimized: document.querySelector('#preview-optimized'),
@@ -23,8 +26,10 @@ export function getAppElements() {
   };
 }
 
-export function updateCompareMask(overlayElement, value) {
-  overlayElement.style.width = `${value}%`;
+export function updateCompareMask(overlayElement, dividerElement, handleElement, value) {
+  overlayElement.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+  dividerElement.style.left = `${value}%`;
+  handleElement.style.left = `${value}%`;
 }
 
 export function updateMetrics(elements, metrics) {

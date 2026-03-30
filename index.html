@@ -143,10 +143,14 @@
               <p>La previsualizacion aparecera aqui cuando cargues una imagen.</p>
             </div>
 
-            <div class="compare-stage__canvas-wrap">
+            <div class="compare-stage__canvas-wrap" id="compare-wrap">
               <img id="preview-original" alt="Vista original" />
               <div class="compare-overlay" id="compare-overlay">
                 <img id="preview-optimized" alt="Vista optimizada" />
+              </div>
+              <div class="compare-divider" id="compare-divider"></div>
+              <div class="compare-handle" id="compare-handle">
+                <span class="compare-handle__arrows" aria-hidden="true">&#x2194;</span>
               </div>
               <input
                 id="compare-slider"
@@ -154,7 +158,7 @@
                 type="range"
                 min="0"
                 max="100"
-                value="55"
+                value="50"
                 aria-label="Control del comparador antes y despues"
               />
             </div>

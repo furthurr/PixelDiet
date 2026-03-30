@@ -164,10 +164,10 @@ elements.compressionRadios.forEach((radio) => {
 });
 
 elements.compareSlider.addEventListener('input', (event) => {
-  updateCompareMask(elements.compareOverlay, event.target.value);
+  updateCompareMask(elements.compareOverlay, elements.compareDivider, elements.compareHandle, event.target.value);
 });
 
-updateCompareMask(elements.compareOverlay, elements.compareSlider.value);
+updateCompareMask(elements.compareOverlay, elements.compareDivider, elements.compareHandle, elements.compareSlider.value);
 updateQualityLabel(
   elements,
   Number(elements.qualityRange.value),
