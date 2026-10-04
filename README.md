@@ -44,12 +44,19 @@ Este proyecto ya incluye workflow para desplegar `dist/` en GitHub Pages.
 - `vite.config.js` usa `base: /PixelDiet/` durante GitHub Actions
 - Si cambias el nombre del repo, actualiza `repoName` en `vite.config.js`
 
-## Autor
-
-- Pedro GV - [@furthurr](https://github.com/furthurr)
-
 ## Siguientes iteraciones sugeridas
 
 - Mover compresion pesada a Web Worker
 - Integrar AVIF mediante libreria/WASM
 - Soportar multiples archivos y cola de exportacion
+
+## Autor
+
+<a href="https://furthurr.github.io/" target="_blank" rel="noopener noreferrer">Pedro G. V. @furthurr</a>
+
+- **GitHub:** https://github.com/furthurr
+- **Email:** pedrogvas@gmail.com
+
+## Licencia
+
+MIT
